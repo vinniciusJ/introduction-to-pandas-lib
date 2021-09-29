@@ -1,8 +1,8 @@
+from html import show_html
 from pandas import DataFrame
 from read_file import read_lines
 
 total_storage = 2581.57
-
 class User:
     def __init__(self, name, used_storage):
         self._name = name
@@ -33,3 +33,5 @@ users_df = transform_in_data_frame(users)
 print('ACME Inc. Uso do espaço em disco pelos usuários')
 print('-----------------------------------------------')
 print(users_df)
+
+show_html(users_df.to_html(index=False))
