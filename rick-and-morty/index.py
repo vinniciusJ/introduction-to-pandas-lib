@@ -16,7 +16,10 @@ is_alien = character_df['species'] == 'Alien'
 aliens = character_df[is_alien]
 
 unique_aliens = aliens['type'].nunique()
-print(f'4. Quantos personagens são alienígenas? {unique_aliens}')
+print(f'3. Quantos personagens são alienígenas? {unique_aliens}')
+
+diferent_alients = aliens.groupby('type')
+print(f'4. Há quantos tipos de alienígenas diferentes? {len(diferent_alients)}')
 
 # Quantos alienigenas são macho e quantos femeas
 is_female = aliens['gender'] == 'Female'
