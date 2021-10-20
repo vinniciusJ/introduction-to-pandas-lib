@@ -15,7 +15,7 @@ while True:
     if not name: break
 
     inputs = ['Primeiro Salto: ', 'Segundo Salto: ', 'Terceiro Salto: ', 'Quarto Salto: ', 'Quinto Salto: ']
-    leaps = [value.split()[0] for value in [input(input_message) for input_message in inputs]]
+    leaps = [ value.split()[0] for value in [input(input_message) for input_message in inputs] ]
     avg = calculate_avg(*leaps)
 
     athletes.append(Athlete(name, leaps, avg))

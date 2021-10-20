@@ -3,6 +3,7 @@ from pandas import DataFrame
 from read_file import read_lines
 
 total_storage = 2581.57
+
 class User:
     def __init__(self, name, used_storage):
         self._name = name
@@ -15,7 +16,12 @@ class User:
     def calculate_used_storage_percent(self, used_storage):
         return round((100 * self._used_storage) / total_storage, 2)
 
+    def __lt__(self, other):
+        return self._used_storage > other._used_storage
+
 def transform_in_data_frame(values):
+    values.sort()
+
     data_frame = DataFrame({
         'Nr.': list(range(1, len(values) + 1)),
         'Usuário': [ value._name.capitalize() for value in values ],
