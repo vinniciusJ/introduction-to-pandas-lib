@@ -1,4 +1,5 @@
 import pandas as pd
+from IPython.display import display
 
 character_df = pd.read_json('character.json')
 episode_df = pd.read_json('episodes.json')
@@ -8,26 +9,27 @@ print(f'1. Quantos personagens existem nessa lista? {character_df.count().id}')
 
 # Quantos são humanos?
 is_human = character_df['species'] == 'Human'
+human_counter, _ = character_df.loc[is_human].shape
 
-print(f'2. Quantos personagens são humanos? {len(character_df[is_human])}')
+print(f'2. Quantos personagens são humanos? {human_counter}')
 
 # Quantos tipos de aliens diferentes?
 is_alien = character_df['species'] == 'Alien'
 aliens = character_df[is_alien]
+alien_counter, _ = aliens.shape
 
-unique_aliens = aliens['type'].nunique()
-print(f'3. Quantos personagens são alienígenas? {unique_aliens}')
+print(f'3. Quantos personagens são alienígenas? {alien_counter}')
 
-diferent_alients = aliens.groupby('type')
-print(f'4. Há quantos tipos de alienígenas diferentes? {len(diferent_alients)}')
+diferent_alien_counter = aliens.groupby('type')
+print(f'4. Há quantos tipos de alienígenas diferentes? {len(diferent_alien_counter)}')
 
 # Quantos alienigenas são macho e quantos femeas
 is_female = aliens['gender'] == 'Female'
 is_male = aliens['gender'] == 'Male'
 
 print('5. Quantos alienígenas são homens e quantos são mulheres?')
-print(f'    * {len(aliens[is_female])} são fêmeas')
-print(f'    * {len(aliens[is_male])} são machos')
+print(f'    * {aliens[is_female].shape[0]} são fêmeas')
+print(f'    * {aliens[is_male].shape[0]} são machos')
 
 crocubot = character_df[character_df['name'] == 'Crocubot']
 crocobut_index = int(crocubot['id']) - 1
